@@ -1,0 +1,11 @@
+import pandas as pd
+df = pd.read_excel("sample-salesv3.xlsx")
+#print (df.head())
+final = df[["ext price", "quantity"]].sum()
+#print(final)
+final1 = df["unit price"].mean()
+#print(final1)
+final2 = df[["ext price", "quantity", "unit price"]].agg(['sum', 'mean'])
+#print(final2)
+final3 = df.agg({'ext price': ['sum', 'mean'], 'quantity': ['sum', 'mean'], 'unit price': ['mean']})
+print(final3)

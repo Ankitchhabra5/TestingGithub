@@ -1,0 +1,11 @@
+import pandas as pd
+df = pd.read_excel("sample-salesv3.xlsx")
+print (df.head())
+df["date"] = pd.to_datetime(df['date'])
+print (df.head())
+order = df.set_index('date').resample('M')["ext price"].sum()
+print(order)
+#order_total = df.set_index('date').groupby('name')["ext price"].resample("M").sum()
+#print (order_total)
+final = df.groupby(['name', pd.Grouper(key='date', freq='A-DEC')])['ext price'].sum()
+print(final)
